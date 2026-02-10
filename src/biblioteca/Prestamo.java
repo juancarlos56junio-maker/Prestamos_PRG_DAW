@@ -15,9 +15,15 @@ public class Prestamo {
     this.tituloLibro=tituloLibro;
     this.socio=socio;
     this.fechaPrestamo=fechaPrestamo;
+    this.fechaDevolucionPrevista=fechaPrestamo.plusDays(14);
   }
-  private void registrarDevolucion(LocalDate OtraFecha){
-   // ifechaDevolucionPrevista=fechaDevolucionPrevista;
+  private void registrarDevolucion(LocalDate otraFecha){
+   // tiene PrestamoInvalidoException.
+    boolean  comparar =otraFecha.isBefore(fechaPrestamo);
+
   }
+ private int  calcularDiasRetraso(){
+   Period calculoD= P.between()
+ }
 
 }

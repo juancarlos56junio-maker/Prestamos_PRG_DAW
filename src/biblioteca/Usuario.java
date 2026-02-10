@@ -9,7 +9,7 @@ public class Usuario {
   private LocalDate fechaRegistro;
   private boolean sancionado ;
   private LocalDate fechaFinSancion;
-public   Usuario(String nombre,String email,String  numeroSocio, LocalDate fechaRegistro){
+public   Usuario (String nombre,String email,String  numeroSocio, LocalDate fechaRegistro){
   this.nombre=nombre;
   this.email=email;
   this.numeroSocio=numeroSocio;
@@ -24,8 +24,8 @@ public   Usuario(String nombre,String email,String  numeroSocio, LocalDate fecha
   public void levantarSancion() {
     this.fechaFinSancion = null;
   }
-  public void estaSancionado(){
-    System.out.println("este usario esta" + sancionado);
+  public boolean estaSancionado(){
+    return sancionado;
   }
 
   @Override
