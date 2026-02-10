@@ -1,6 +1,7 @@
 package biblioteca;
 
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class Prestamo {
   private  String codigoLibro;
@@ -8,7 +9,7 @@ public class Prestamo {
   private Usuario socio;
   private LocalDate fechaPrestamo;
   private LocalDate fechaDevolucionPrevista;
-  private LocalDate getFechaDevolucionreal;
+  private LocalDate fechaDevolucionReal;
 
   public Prestamo(String codigoLibro,String tituloLibro,Usuario socio,LocalDate fechaPrestamo){
     this.codigoLibro=codigoLibro;
@@ -23,7 +24,25 @@ public class Prestamo {
 
   }
  private int  calcularDiasRetraso(){
-   Period calculoD= P.between()
- }
+  return   (int)ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucionReal);
 
+ }
+   private boolean estaRetrasado() {
+     return fechaDevolucionPrevista.isBefore(LocalDate.now());
+   }
+
+  @Override
+  public String toString() {
+    System.out.println(
+                          "codigoLibro: "+codigoLibro+
+                           "Titulo :" +tituloLibro+
+                            socio.getNumeroSocio() +socio+
+                            "fechaPrestamo" +fechaPrestamo+
+                             "fechaDevolucionPrevista: "+fechaDevolucionPrevista
+
+    );
+
+  }
 }
+
+

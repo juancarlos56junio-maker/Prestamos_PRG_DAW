@@ -9,7 +9,12 @@ public class Usuario {
   private LocalDate fechaRegistro;
   private boolean sancionado ;
   private LocalDate fechaFinSancion;
-public   Usuario (String nombre,String email,String  numeroSocio, LocalDate fechaRegistro){
+
+  public String getNumeroSocio() {
+    return numeroSocio;
+  }
+
+  public   Usuario (String nombre, String email, String  numeroSocio, LocalDate fechaRegistro){
   this.nombre=nombre;
   this.email=email;
   this.numeroSocio=numeroSocio;
