@@ -1,5 +1,7 @@
 package biblioteca;
 
+import biblioteca.Ecepciones.UsuarioInvalidoException;
+
 import java.time.LocalDate;
 
 public class Usuario {
@@ -9,17 +11,17 @@ public class Usuario {
   private LocalDate fechaRegistro;
   private boolean sancionado ;
   private LocalDate fechaFinSancion;
-
+  public   Usuario (String nombre, String email, String  numeroSocio, LocalDate fechaRegistro) throws UsuarioInvalidoException {
+    this.nombre=nombre;
+    this.email=email;
+    this.numeroSocio=numeroSocio;
+    this.fechaRegistro=fechaRegistro;
+  }
   public String getNumeroSocio() {
     return numeroSocio;
   }
 
-  public   Usuario (String nombre, String email, String  numeroSocio, LocalDate fechaRegistro){
-  this.nombre=nombre;
-  this.email=email;
-  this.numeroSocio=numeroSocio;
-  this.fechaRegistro=fechaRegistro;
-}
+
 
   public void sancionarPrueba(int dias) {
 
@@ -35,13 +37,13 @@ public class Usuario {
 
   @Override
   public String toString() {
-    return (
+    return
                     "nombre: "+nombre +
                      "email: "+email +
                       "numeroSocio: " + numeroSocio +
                       "fecha registro: "+fechaRegistro+
                       "usuario correctamente registrado"
 
-    );
+    ;
   }
 }

@@ -33,14 +33,14 @@ public class Prestamo {
 
   @Override
   public String toString() {
-    System.out.println(
+    return 
                           "codigoLibro: "+codigoLibro+
                            "Titulo :" +tituloLibro+
                             socio.getNumeroSocio() +socio+
                             "fechaPrestamo" +fechaPrestamo+
                              "fechaDevolucionPrevista: "+fechaDevolucionPrevista
 
-    );
+    ;
 
   }
 }
