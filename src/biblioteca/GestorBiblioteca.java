@@ -2,6 +2,9 @@ package biblioteca;
 
 import biblioteca.Ecepciones.UsuarioRepetidoException;
 
+import java.time.LocalDate;
+import java.util.Objects;
+
 public class GestorBiblioteca {
  private final  int Max_USUARIOS=50;
   private final  int MaxPRESTAMOS=200;
@@ -17,5 +20,27 @@ public class GestorBiblioteca {
    Prestamo[] prestamos =new Prestamo[MaxPRESTAMOS];
     Usuario[]usuarios=new  Usuario[Max_USUARIOS];
   }
-  public  registrarUsuario() throws UsuarioRepetidoException {}
+  public void registrarUsuario(Usuario u) throws UsuarioRepetidoException {
+     for(int i=0 ;i<usuarios.length;i++) {
+       if (Objects.equals(u.getNumeroSocio(), usuarios[i].getNumeroSocio())){
+       throw  new UsuarioRepetidoException("el usuario ya esta registrado");
+       }
+     }
+     usuarios[numeroUsuarios]=u;
+     numeroUsuarios++;
+
+  }
+  public void(String codigoLibro, String tituloLibro, Usuario socio, LocalDate fechaPrestamo){
+    if(prestamos.)
+    numeroPrestamos ++;
+  }
+
+  public Prestamo[] getPrestamos() {
+    return prestamos;
+  }
+
+  public Usuario[] getUsuarios() {
+    return usuarios;
+  }
+
 }

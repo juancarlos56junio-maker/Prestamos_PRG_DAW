@@ -21,6 +21,7 @@ public class Prestamo {
   private void registrarDevolucion(LocalDate otraFecha){
    // tiene PrestamoInvalidoException.
     boolean  comparar =otraFecha.isBefore(fechaPrestamo);
+    fechaDevolucionReal=otraFecha;
 
   }
  private int  calcularDiasRetraso(){
@@ -33,7 +34,7 @@ public class Prestamo {
 
   @Override
   public String toString() {
-    return 
+    return
                           "codigoLibro: "+codigoLibro+
                            "Titulo :" +tituloLibro+
                             socio.getNumeroSocio() +socio+
@@ -42,6 +43,10 @@ public class Prestamo {
 
     ;
 
+  }
+
+  public LocalDate getFechaDevolucionReal() {
+    return fechaDevolucionReal;
   }
 }
 
