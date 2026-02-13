@@ -42,8 +42,9 @@ public class Usuario {
                      "email: "+email +
                       "numeroSocio: " + numeroSocio +
                       "fecha registro: "+fechaRegistro+
-                      "usuario correctamente registrado"
-
+                      "usuario correctamente registrado"+
+                        "\n"+
+                        "usuario creado correctamente"
     ;
   }
 }

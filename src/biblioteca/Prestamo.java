@@ -18,17 +18,16 @@ public class Prestamo {
     this.fechaPrestamo=fechaPrestamo;
     this.fechaDevolucionPrevista=fechaPrestamo.plusDays(14);
   }
-  private void registrarDevolucion(LocalDate otraFecha){
-   // tiene PrestamoInvalidoException.
+  public void registrarDevolucion(LocalDate otraFecha){
     boolean  comparar =otraFecha.isBefore(fechaPrestamo);
     fechaDevolucionReal=otraFecha;
 
   }
- private int  calcularDiasRetraso(){
+ public int  calcularDiasRetraso(){
   return   (int)ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucionReal);
 
  }
-   private boolean estaRetrasado() {
+   public boolean estaRetrasado() {
      return fechaDevolucionPrevista.isBefore(LocalDate.now());
    }
 

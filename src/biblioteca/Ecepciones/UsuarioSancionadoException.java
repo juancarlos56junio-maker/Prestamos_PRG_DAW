@@ -1,5 +1,5 @@
 package biblioteca.Ecepciones;
 
-public class UsuarioSancionadoException {
+public class UsuarioSancionadoException  extends Exception {
 
 }
