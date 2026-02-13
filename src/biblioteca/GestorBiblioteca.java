@@ -36,17 +36,25 @@ public class GestorBiblioteca {
 
   }
 
-  public void realizarPrestamo(String codigoLibro, String tituloLibro, Usuario socio, LocalDate fechaPrestamo) throws PrestamoInvalidoException,UsuarioSancionadoException,LibroNoDisponibleException {
+  public Prestamo realizarPrestamo(String codigoLibro, String tituloLibro, Usuario socio, LocalDate fechaPrestamo) throws PrestamoInvalidoException,UsuarioSancionadoException,LibroNoDisponibleException {
 
-      return Prestamo P=new Prestamo(codigoLibro,tituloLibro,socio,fechaPrestamo);
+      Prestamo p=new Prestamo(codigoLibro,tituloLibro,socio,fechaPrestamo);
       numeroPrestamos++;
+      return p;
   }
-public void devolverLibro(String codigoLibro,LocalDate fechaDevolucionPrevista,Usuario esteUsuario){
-   for (int i;i< MAX_PRESTAMOS; i++){
+public boolean devolverLibro(String codigoLibro,LocalDate fechaDevolucionReal,Usuario este){
+   for (int i=0;i< prestamos.length; i++){
+     codigoLibro.equalsIgnoreCase(prestamos[i].getCodigoLibro());
+       if (fechaDevolucionReal.isAfter(fechaDevolucionReal){
+         este.sancionar(fechaDevolucionReal.isAfter(fechaDevolucionReal);
+    //
+     }
 
-     if (esteUsuario.estaSancionado=false)
+     return  boolean estaDevuelto;
+
 
    }
+
 }
 
 

@@ -23,7 +23,7 @@ public class Usuario {
 
 
 
-  public void sancionarPrueba(int dias) {
+  public void sancionar(int dias) {
 
     LocalDate inicioSancion = LocalDate.of(2021, 7, 7); // 7 julio 2021
     this.fechaFinSancion = inicioSancion.plusDays(dias);   // sanción de 5 días
