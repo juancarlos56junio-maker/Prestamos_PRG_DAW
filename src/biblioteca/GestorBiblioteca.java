@@ -6,6 +6,7 @@ import biblioteca.Ecepciones.UsuarioRepetidoException;
 import biblioteca.Ecepciones.UsuarioSancionadoException;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class GestorBiblioteca {
@@ -42,19 +43,44 @@ public class GestorBiblioteca {
       numeroPrestamos++;
       return p;
   }
-public boolean devolverLibro(String codigoLibro,LocalDate fechaDevolucionReal,Usuario este){
-   for (int i=0;i< prestamos.length; i++){
-     codigoLibro.equalsIgnoreCase(prestamos[i].getCodigoLibro());
-       if (fechaDevolucionReal.isAfter(fechaDevolucionReal){
-         este.sancionar(fechaDevolucionReal.isAfter(fechaDevolucionReal);
-    //
-     }
+  public boolean devolverLibro(String codigoLibro,
+                               LocalDate fechaDevolucionReal,
+                               Usuario esteUsuario) {
 
-     return  boolean estaDevuelto;
+    for (int i = 0; i < prestamos.length; i++) {
 
+      Prestamo p = prestamos[i];
 
-   }
+      if (p != null &&
+        p.getCodigoLibro().equalsIgnoreCase(codigoLibro) &&
+        p.getFechaDevolucionReal() == null) {
 
+        // Registrar devolución
+        p.setFechaDevolucionReal(fechaDevolucionReal);
+
+        // Comprobar retraso
+        if (fechaDevolucionReal.isAfter(p.getFechaDevolucionPrevista())) {
+
+          long diasRetraso = ChronoUnit.DAYS.between(
+            p.getFechaDevolucionPrevista(),
+            fechaDevolucionReal);
+
+          esteUsuario.sancionar((int) diasRetraso);
+        }
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+  public String buscarUsuario(String numeroSocio){
+    for (int i = 0; i < usuarios.length; i++) {
+   if (usuarios[i].getNumeroSocio().equals(numeroSocio)){
+     return usuarios[i].getNumeroSocio();}
+
+  }
+    return null;
 }
 
 

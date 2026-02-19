@@ -55,6 +55,10 @@ public class Prestamo {
   public String getCodigoLibro() {
     return codigoLibro;
   }
+
+  public void setFechaDevolucionReal(LocalDate fechaDevolucionReal) {
+    this.fechaDevolucionReal = fechaDevolucionReal;
+  }
 }
 
 
