@@ -38,10 +38,10 @@ public class Usuario {
   @Override
   public String toString() {
     return
-                    "nombre: "+nombre +
-                     "email: "+email +
-                      "numeroSocio: " + numeroSocio +
-                      "fecha registro: "+fechaRegistro+
+                    "nombre: "+nombre +"\n"+
+                     "email: "+email +"\n"+
+                      "numeroSocio: " + numeroSocio +"\n"+
+                      "fecha registro: "+fechaRegistro+"\n"+
                       "usuario correctamente registrado"+
                         "\n"+
                         "usuario creado correctamente"

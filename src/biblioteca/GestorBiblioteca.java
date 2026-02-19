@@ -74,10 +74,10 @@ public class GestorBiblioteca {
 
     return false;
   }
-  public String buscarUsuario(String numeroSocio){
+  public Usuario buscarUsuario(String numeroSocio){
     for (int i = 0; i < usuarios.length; i++) {
    if (usuarios[i].getNumeroSocio().equals(numeroSocio)){
-     return usuarios[i].getNumeroSocio();}
+     return usuarios[i];}
 
   }
     return null;
@@ -92,4 +92,8 @@ public class GestorBiblioteca {
     return usuarios;
   }
 
+  @Override
+  public String toString() {
+    return usuarios.toString()+prestamos.toString();
+  }
 }
