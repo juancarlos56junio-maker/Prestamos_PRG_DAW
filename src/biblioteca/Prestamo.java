@@ -34,11 +34,12 @@ public class Prestamo {
   @Override
   public String toString() {
     return
-                          "codigoLibro: "+codigoLibro+
-                           "Titulo :" +tituloLibro+
-                            socio.getNumeroSocio() +socio+
-                            "fechaPrestamo" +fechaPrestamo+
-                             "fechaDevolucionPrevista: "+fechaDevolucionPrevista
+                          "codigoLibro: "+codigoLibro+"/n"+
+                           "Titulo :" +tituloLibro+"/n"+
+                            socio.getNumeroSocio() +socio+"/n"+
+                            "fechaPrestamo" +fechaPrestamo+"/n"+
+                             "fechaDevolucionPrevista: "+fechaDevolucionPrevista"/n"+
+                                 " prestamo creado"
 
     ;
 
