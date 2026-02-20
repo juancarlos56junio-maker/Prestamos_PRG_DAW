@@ -1,83 +1,139 @@
 package biblioteca;
+
+import biblioteca.Ecepciones.PrestamoInvalidoException;
 import biblioteca.Ecepciones.UsuarioInvalidoException;
+import biblioteca.Ecepciones.UsuarioRepetidoException;
+import biblioteca.Ecepciones.UsuarioSancionadoException;
 
 import java.time.LocalDate;
 import java.util.Scanner;
-public class mainBiblioteca {
+
+public class MainBiblioteca {
+
   public static void main(String[] args) {
-    int opcion=0;
-     Scanner in=new Scanner(System.in);
-     do{
-       System.out.println(
 
-         "1. Registrar nuevo usuario  \n" +
-           "2. Realizar préstamo de libro  \n" +
-           "3. Devolver libro  \n" +
-           "4. Consultar estado de usuario  \n" +
-           "5. Mostrar préstamos activos  \n" +
-           "6. Mostrar usuarios sancionados  \n" +
-           "7. Actualizar sanciones \n" +
-           "8. Salir ");
-    }
+    Scanner in = new Scanner(System.in);
+    GestorBiblioteca gb = new GestorBiblioteca();
+    int opcion;
 
- try {
-   GestorBiblioteca gb= new GestorBiblioteca();
-   switch (opcion<8) {
+    do {
+      System.out.println("\n1. Registrar nuevo usuario");
+      System.out.println("2. Realizar préstamo de libro");
+      System.out.println("3. Devolver libro");
+      System.out.println("4. Consultar estado de usuario");
+      System.out.println("5. Mostrar préstamos activos");
+      System.out.println("6. Mostrar usuarios sancionados");
+      System.out.println("7. Actualizar sanciones");
+      System.out.println("8. Salir");
 
-     case 1:
-       System.out.println(" introduce nombre");
-        String nombre= in.nextLine();
-       System.out.println("introduce email");
-       String email= in.nextLine();
-       System.out.println("introduce numero socio");
-       String  numeroSocio=in.nextLine();
-       LocalDate fechaRegistro=LocalDate.now();
-       Usuario usuariomM =new Usuario( nombre,email,numeroSocio,fechaRegistro);
+      opcion = Integer.parseInt(in.nextLine());
 
-       gb.registrarUsuario(usuariomM);
+      try {
 
+        switch (opcion) {
 
-     }
-       break;
-     case 2:
-       System.out.println(" introduce codigo libro ");
-       String codigoLibro= in.nextLine();
-       System.out.println(" introduce titulo libro");
-       String tituloLibro= in.nextLine();
-       System.out.println(" introduce codigo del socio");
-       String numeroSocio=in.nextLine();
-       Usuario socio=gb.buscarUsuario(numeroSocio);
-      LocalDate fechaRegistro=LocalDate.now();
+          case 1:
+            System.out.println("Introduce nombre:");
+            String nombre = in.nextLine();
 
-      gb.realizarPrestamo(codigoLibro,tituloLibro,socio,fechaRegistro);
+            System.out.println("Introduce email:");
+            String email = in.nextLine();
 
-       break;
-     case 3:
-       System.out.println(" introduce codigo libro ");
-       String codigoLibro= in.nextLine();
-       LocalDate fechaDevolucion=LocalDate.now();
-       gb.devolverLibro(codigoLibro,fechaDevolucion);
-       break;
-     case 4:
-       System.out.println(" introduce codigo del socio");
-       String numeroSocio=in.nextLine();
-       Usuario socio=gb.buscarUsuario(numeroSocio);
-       socio.toString()+ socio.estaSancionado()
-       break;
-     case 5: gb.getPrestamos()
-       break;
-     case 6:
-       for ( Usuario u:gb.getUsuarios()){
-         if (u.estaSancionado()==true){ u.toSring;}
-       }
+            System.out.println("Introduce número socio:");
+            String numeroSocio = in.nextLine();
 
-       break;
-     case 1:
-       break;
-     case 1:
-       break;
-   }
+            Usuario usuario = new Usuario(
+              nombre, email, numeroSocio, LocalDate.now());
 
- }
+            gb.registrarUsuario(usuario);
+            break;
+
+          case 2:
+            System.out.println("Introduce código libro:");
+            String codigoLibro = in.nextLine();
+
+            System.out.println("Introduce título libro:");
+            String tituloLibro = in.nextLine();
+
+            System.out.println("Introduce número socio:");
+            String socioId = in.nextLine();
+
+            Usuario socio = gb.buscarUsuario(socioId);
+
+            gb.realizarPrestamo(
+              codigoLibro,
+              tituloLibro,
+              socio,
+              LocalDate.now());
+
+            break;
+
+          case 3:
+            System.out.println("Introduce código libro:");
+            String codigo = in.nextLine();
+
+            gb.devolverLibro(codigo, LocalDate.now());
+            break;
+
+          case 4:
+            System.out.println("Introduce número socio:");
+            String id = in.nextLine();
+
+            Usuario u = gb.buscarUsuario(id);
+            System.out.println(u);
+            System.out.println("¿Sancionado? " + u.estaSancionado());
+            break;
+
+          case 5:
+            System.out.println(gb.getPrestamos());
+            break;
+
+          case 6:
+            System.out.println("Usuarios sancionados:");
+            for (Usuario us : gb.getUsuarios()) {
+              if (us.estaSancionado()) {
+                System.out.println(us);
+              }
+            }
+            break;
+
+          case 7:
+            for (Usuario us : gb.getUsuarios()) {
+              if (us.getFechaFinSancion() != null &&
+                !LocalDate.now().isBefore(us.getFechaFinSancion())) {
+                us.levantarSancion();
+              }
+            }
+            System.out.println("Sanciones actualizadas.");
+            break;
+
+          case 8:
+            System.out.println("Saliendo...");
+            break;
+
+          default:
+            System.out.println("Opción no válida.");
+        }
+
+      } catch (UsuarioInvalidoException e) {
+        System.out.println("Usuario inválido: " + e.getMessage());
+
+      } catch (UsuarioRepetidoException e) {
+        System.out.println("Usuario ya registrado.");
+
+      } catch (UsuarioSancionadoException e) {
+        System.out.println("El usuario está sancionado.");
+
+      } catch (PrestamoInvalidoException e) {
+        System.out.println("Préstamo no válido.");
+
+      } catch (Exception e) {
+        System.out.println("Error inesperado: " + e.getMessage());
+      }
+
+    } while (opcion != 8);
+
+    in.close();
   }
 }
+

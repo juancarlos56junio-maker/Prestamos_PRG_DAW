@@ -21,7 +21,9 @@ public class Usuario {
     return numeroSocio;
   }
 
-
+  public LocalDate getFechaFinSancion() {
+    return fechaFinSancion;
+  }
 
   public void sancionar(int dias) {
 
@@ -29,6 +31,8 @@ public class Usuario {
     this.fechaFinSancion = inicioSancion.plusDays(dias);   // sanción de 5 días
   }
   public void levantarSancion() {
+
+    this.sancionado = false;
     this.fechaFinSancion = null;
   }
   public boolean estaSancionado(){
@@ -42,9 +46,7 @@ public class Usuario {
                      "email: "+email +"\n"+
                       "numeroSocio: " + numeroSocio +"\n"+
                       "fecha registro: "+fechaRegistro+"\n"+
-                      "usuario correctamente registrado"+
-                        "\n"+
-                        "usuario creado correctamente"
+
     ;
   }
 }
